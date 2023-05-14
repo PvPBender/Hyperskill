@@ -1,11 +1,8 @@
-SIZE = 3  # both the winning line and (x, y) board size
-
-
 def tic_tac_input(input_):
     input_ = input_.replace("_", " ")
-    game_board = [[' '] * SIZE for _ in range(SIZE)]  # creates the 2D game board with empty cells
-    for i in range(SIZE):
-        game_board[i] = list(input_[i * SIZE: (i + 1) * SIZE])
+    game_board = [[' '] * 3 for _ in range(3)]  # creates the 2D game board with empty cells
+    for i in range(3):
+        game_board[i] = list(input_[i * 3: (i + 1) * 3])
 
     return game_board
 
@@ -24,8 +21,7 @@ grid = tic_tac_input(input())
 
 tic_tac_print()
 
-valid = False
-while not valid:
+while True:
     try:
         coordinates = [int(x) - 1 for x in input().split()]
     except ValueError:
@@ -36,6 +32,6 @@ while not valid:
         elif grid[coordinates[0]][coordinates[1]] != " ":
             print("This cell is occupied! Choose another one!")
         else:
-            valid = True
             grid[coordinates[0]][coordinates[1]] = "X"
             tic_tac_print()
+            break
