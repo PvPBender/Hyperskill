@@ -10,12 +10,32 @@ def tic_tac_input(input_):
     return game_board
 
 
+def tic_tac_print():
+    print(f"""
+          ---------\n
+          | {' '.join(grid[0])} |\n
+          | {' '.join(grid[1])} |\n
+          | {' '.join(grid[2])} |\n
+          ---------\n
+          """)
+
+
 grid = tic_tac_input(input())
 
-print(f"""
-      ---------\n
-      | {' '.join(grid[0])} |\n
-      | {' '.join(grid[1])} |\n
-      | {' '.join(grid[2])} |\n
-      ---------\n
-      """)
+tic_tac_print()
+
+valid = False
+while not valid:
+    try:
+        coordinates = [int(x) - 1 for x in input().split()]
+    except ValueError:
+        print("You should enter numbers!")
+    else:
+        if not (0 <= coordinates[0] <= 2 and 0 <= coordinates[1] <= 2):
+            print("Coordinates should be from 1 to 3!")
+        elif grid[coordinates[0]][coordinates[1]] != " ":
+            print("This cell is occupied! Choose another one!")
+        else:
+            valid = True
+            grid[coordinates[0]][coordinates[1]] = "X"
+            tic_tac_print()
