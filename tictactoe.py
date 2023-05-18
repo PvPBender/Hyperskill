@@ -64,8 +64,6 @@ def check_win(player) -> bool:
         print(f"{player} wins")
         return True
     else:
-        print(grid[coordinates[0]])
-        print([True if cell == player else False for cell in grid[coordinates[0]]])
         return False
 
 
