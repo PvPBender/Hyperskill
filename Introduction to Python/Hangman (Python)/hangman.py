@@ -1,4 +1,5 @@
 from random import choice
+from string import ascii_lowercase
 
 
 def main():
@@ -12,26 +13,28 @@ def main():
     while attempts > 0:
         print('\n' + ''.join(to_guess_list))
 
-        if (guessed := input("Input a letter: ")) in to_guess_set:
-            if guessed in to_guess_list:
-                print("No improvements.")
-                attempts -= 1
-                if attempts == 0:
-                    print("You lost!")
-                    break
+        if len(guessed := input("Input a letter: ")) != 1:
+            print("Please, input a single letter.")
+            continue
+        elif guessed not in ascii_lowercase:
+            print("Please, enter a lowercase letter from the English alphabet.")
+            continue
 
+        if guessed in to_guess_set:
+            if guessed in to_guess_list:
+                print("You've already guessed this letter.")
             else:
                 to_guess_list = [guessed if x == guessed else to_guess_list[i] for i, x in enumerate(to_guess)]
 
                 if to_guess_list == list(to_guess):
-                    print(f"\n{to_guess}\nYou guessed the word!\nYou survived!")
+                    print(f"You guessed the word {to_guess}!\nYou survived!")
                     break
 
         else:
             print("That letter doesn't appear in the word.")
             attempts -= 1
             if attempts == 0:
-                print("You lost!")
+                print("\nYou lost!")
                 break
 
 
