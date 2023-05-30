@@ -19,6 +19,7 @@ def play(wins, losses):
             continue
         elif letter in guessed_letters:
             print("You've already guessed this letter.")
+            continue
 
         guessed_letters.add(letter)
 
