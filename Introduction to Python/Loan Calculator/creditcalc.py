@@ -7,7 +7,7 @@ def get_n_of_months() -> int:
     monthly_payment = float(input("Enter the monthly payment:\n"))
     monthly_interest = float(input("Enter the loan interest:\n")) / 12 / 100
 
-    return int(ceil(log(monthly_payment / (monthly_payment - monthly_interest * principal), 1 + monthly_interest)))
+    return ceil(log(monthly_payment / (monthly_payment - monthly_interest * principal), 1 + monthly_interest))
 
 
 def get_monthly_payment() -> int:
